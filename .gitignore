@@ -6,3 +6,5 @@
 /banana-platform-system/src/test
 /banana-platform-config/src/test
 /banana-platform-common/src/test
+/banana-platform-datasources/*.iml
+/banana-platform-datasources/src/test
