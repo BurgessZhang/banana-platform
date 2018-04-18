@@ -1,0 +1,8 @@
+/banana-platform/.idea
+/banana-platform/*.iml
+/banana-platform-common/*.iml
+/banana-platform-config/*.iml
+/banana-platform-system/*.iml
+/banana-platform-system/src/test
+/banana-platform-config/src/test
+/banana-platform-common/src/test
