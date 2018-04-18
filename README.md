@@ -1,2 +1,2 @@
 # banana-platform
-jess集成
+J2EE集成
