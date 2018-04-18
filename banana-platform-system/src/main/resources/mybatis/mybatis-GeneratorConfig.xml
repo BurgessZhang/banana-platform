@@ -49,7 +49,52 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-        <table schema="banana-platform" tableName="tb_user" domainObjectName="BananaUser"
+        <table schema="banana-platform" tableName="sys_user" domainObjectName="BananaSysUser"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table schema="banana-platform" tableName="sys_captcha" domainObjectName="BananaSysCaptcha"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table schema="banana-platform" tableName="sys_user_role" domainObjectName="BananaSysUserRole"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table schema="banana-platform" tableName="sys_user_token" domainObjectName="BananaSysUserToken"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table schema="banana-platform" tableName="sys_role" domainObjectName="BananaSysRole"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table schema="banana-platform" tableName="sys_role_menu" domainObjectName="BananaSysRoleMenu"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table schema="banana-platform" tableName="sys_oss" domainObjectName="BananaSysOss"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table schema="banana-platform" tableName="sys_menu" domainObjectName="BananaSysMenu"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table schema="banana-platform" tableName="sys_log" domainObjectName="BananaSysLog"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table schema="banana-platform" tableName="sys_config" domainObjectName="BananaSysConfig"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
             <property name="useActualColumnNames" value="false"/>

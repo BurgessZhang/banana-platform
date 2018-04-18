@@ -11,6 +11,7 @@
     <module>../banana-platform-common</module>
     <module>../banana-platform-config</module>
     <module>../banana-platform-system</module>
+      <module>../banana-platform-datasources</module>
   </modules>
   <packaging>pom</packaging>
 
