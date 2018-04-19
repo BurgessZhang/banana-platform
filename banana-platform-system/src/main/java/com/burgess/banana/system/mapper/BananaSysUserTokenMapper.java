@@ -14,4 +14,6 @@ public interface BananaSysUserTokenMapper {
     int updateByPrimaryKeySelective(BananaSysUserToken record);
 
     int updateByPrimaryKey(BananaSysUserToken record);
+
+    BananaSysUserToken queryByToken(String token);
 }

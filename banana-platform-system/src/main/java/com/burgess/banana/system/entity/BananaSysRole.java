@@ -1,11 +1,14 @@
 package com.burgess.banana.system.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class BananaSysRole implements Serializable {
     private Long roleId;
 
+    @NotBlank(message="角色名称不能为空")
     private String roleName;
 
     private String remark;

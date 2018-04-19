@@ -79,4 +79,10 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
+
+  <select id="queryByToken" resultType="com.burgess.banana.system.entity.BananaSysUserToken">
+    select user_id AS userId,token,expire_time AS expireTime,update_time AS updateTime
+    from sys_user_token
+    where token = #{value}
+  </select>
 </mapper>

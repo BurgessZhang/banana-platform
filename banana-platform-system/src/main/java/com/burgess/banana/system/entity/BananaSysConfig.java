@@ -1,12 +1,15 @@
 package com.burgess.banana.system.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import java.io.Serializable;
 
 public class BananaSysConfig implements Serializable {
     private Long id;
 
+    @NotBlank(message="参数名不能为空")
     private String key;
-
+    @NotBlank(message="参数值不能为空")
     private String value;
 
     private Byte status;

@@ -3,6 +3,9 @@ package com.burgess.banana.system.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author tom.zhang
+ */
 public class BananaSysUserToken implements Serializable {
     private Long userId;
 

@@ -125,4 +125,31 @@
       order_num = #{orderNum,jdbcType=INTEGER}
     where menu_id = #{menuId,jdbcType=BIGINT}
   </update>
+
+  <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select *
+    from sys_menu
+  </select>
+
+  <select id="queryListParentId" resultType="com.burgess.banana.system.entity.dto.BananaSysMenuDto">
+    select *
+    from sys_menu
+    where parent_id = #{parentId}
+    order by order_num asc
+  </select>
+
+  <select id="queryNotButtonList" resultType="com.burgess.banana.system.entity.BananaSysMenu">
+    select
+      menu_id AS menuId,
+      parent_id AS parentId,
+      name,
+      url,
+      perms,
+      type,
+      icon,
+      order_num AS orderNum
+    from sys_menu
+    where type != 2
+    order by order_num asc
+  </select>
 </mapper>

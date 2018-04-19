@@ -1,17 +1,29 @@
 package com.burgess.banana.system.entity;
 
+import com.burgess.banana.common.validator.group.BananaAddGroup;
+import com.burgess.banana.common.validator.group.BananaUpdateGroup;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author tom.zhang
+ */
 public class BananaSysUser implements Serializable {
     private Long userId;
 
+    @NotBlank(message = "用户名不能为空",groups = {BananaAddGroup.class, BananaUpdateGroup.class})
     private String username;
 
+    @NotBlank(message = "密码不能为空",groups = BananaAddGroup.class)
     private String password;
 
     private String salt;
 
+    @NotBlank(message="邮箱不能为空", groups = {BananaAddGroup.class, BananaUpdateGroup.class})
+    @Email(message="邮箱格式不正确", groups = {BananaAddGroup.class, BananaUpdateGroup.class})
     private String email;
 
     private String mobile;

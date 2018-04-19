@@ -138,4 +138,34 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
+
+  <!-- 查询用户的所有权限 -->
+  <select id="queryAllPerms" resultType="string">
+    select m.perms from sys_user_role ur
+    LEFT JOIN sys_role_menu rm on ur.role_id = rm.role_id
+    LEFT JOIN sys_menu m on rm.menu_id = m.menu_id
+    where ur.user_id = #{userId}
+  </select>
+
+  <!-- 查询用户的所有菜单ID -->
+  <select id="queryAllMenuId" resultType="long">
+    select distinct rm.menu_id from sys_user_role ur
+    LEFT JOIN sys_role_menu rm on ur.role_id = rm.role_id
+    where ur.user_id = #{userId}
+  </select>
+
+  <select id="queryByUserName" resultType="com.burgess.banana.system.entity.BananaSysUser">
+    select
+      user_id AS userId,
+      username,
+      password,
+      salt,
+      email,
+      mobile,
+      status,
+      create_user_id AS createUserId,
+      create_time AS createTime
+    from sys_user
+    where username = #{username}
+  </select>
 </mapper>

@@ -1,6 +1,6 @@
 package com.burgess.banana.common.xss;
 
-import com.burgess.banana.common.exception.RRException;
+import com.burgess.banana.common.exception.BananaResultException;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -36,7 +36,7 @@ public class BananaSQLFilter {
         //判断是否包含非法字符
         for(String keyword : keywords){
             if(str.indexOf(keyword) != -1){
-                throw new RRException("包含非法字符");
+                throw new BananaResultException("包含非法字符");
             }
         }
 

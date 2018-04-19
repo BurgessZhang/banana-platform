@@ -68,4 +68,16 @@
       role_id = #{roleId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+
+  <delete id="deleteBatch">
+    delete from sys_user_role where role_id in
+    <foreach item="roleId" collection="array" open="(" separator="," close=")">
+      #{roleId}
+    </foreach>
+  </delete>
+
+  <select id="queryRoleIdList" resultType="long">
+    select role_id from sys_user_role where user_id = #{value}
+  </select>
 </mapper>

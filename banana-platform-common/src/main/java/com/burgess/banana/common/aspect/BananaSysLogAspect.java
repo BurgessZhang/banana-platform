@@ -1,6 +1,6 @@
 package com.burgess.banana.common.aspect;
 
-import com.burgess.banana.common.exception.RRException;
+import com.burgess.banana.common.exception.BananaResultException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
@@ -31,7 +31,7 @@ public class BananaSysLogAspect {
                 result = point.proceed();
             }catch (Exception e){
                 LOGGER.error("redis error",e);
-                throw new RRException("Redis服务异常");
+                throw new BananaResultException("Redis服务异常");
             }
         }
         return result;

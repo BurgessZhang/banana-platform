@@ -2,6 +2,9 @@ package com.burgess.banana.system.entity;
 
 import java.io.Serializable;
 
+/**
+ * @author tom.zhang
+ */
 public class BananaSysMenu implements Serializable {
     private Long menuId;
 

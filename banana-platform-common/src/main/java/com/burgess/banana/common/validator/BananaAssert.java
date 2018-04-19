@@ -1,6 +1,6 @@
 package com.burgess.banana.common.validator;
 
-import com.burgess.banana.common.exception.RRException;
+import com.burgess.banana.common.exception.BananaResultException;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -15,13 +15,13 @@ public  abstract class BananaAssert {
 
     public static void isBlank(String str, String message) {
         if (StringUtils.isBlank(str)) {
-            throw new RRException(message);
+            throw new BananaResultException(message);
         }
     }
 
     public static void isNull(Object object, String message) {
         if (object == null) {
-            throw new RRException(message);
+            throw new BananaResultException(message);
         }
     }
 
