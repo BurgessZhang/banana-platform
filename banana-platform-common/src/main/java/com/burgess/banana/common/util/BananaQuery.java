@@ -17,7 +17,8 @@ import java.util.Map;
  */
 public class BananaQuery<T> extends LinkedHashMap<String, Object> {
 
-    /**
+    private static final long serialVersionUID = 7198384443030034316L;
+	/**
      * mybatis-plus分页参数
      */
     private Page<T> page;

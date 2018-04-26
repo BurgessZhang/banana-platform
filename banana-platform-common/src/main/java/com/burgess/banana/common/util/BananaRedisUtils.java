@@ -28,7 +28,7 @@ public class BananaRedisUtils {
     private ListOperations<String, Object> listOperations;
     @Autowired
     private SetOperations<String, Object> setOperations;
-    @Autowired
+	@Autowired
     private ZSetOperations<String, Object> zSetOperations;
     /**
      * 默认过期时长，单位：秒

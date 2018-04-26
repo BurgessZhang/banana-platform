@@ -10,7 +10,9 @@ package com.burgess.banana.common.exception;
  */
 public class BananaResultException extends RuntimeException {
 
-    private String msg;
+    private static final long serialVersionUID = 1997393652162005329L;
+    
+	private String msg;
     private int code = 500;
 
     public BananaResultException(String msg){
