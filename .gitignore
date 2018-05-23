@@ -8,3 +8,9 @@
 /banana-platform-common/src/test
 /banana-platform-datasources/*.iml
 /banana-platform-datasources/src/test
+.project
+.settings/
+.classpath
+*/.gitignore
+.factorypath
+

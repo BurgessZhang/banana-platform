@@ -151,7 +151,8 @@ public class BananaHTMLFilter {
      *
      * @param conf map containing configuration. keys match field names.
      */
-    public BananaHTMLFilter(final Map<String, Object> conf) {
+    @SuppressWarnings("unchecked")
+	public BananaHTMLFilter(final Map<String, Object> conf) {
 
         assert conf.containsKey("vAllowed") : "configuration requires vAllowed";
         assert conf.containsKey("vSelfClosingTags") : "configuration requires vSelfClosingTags";

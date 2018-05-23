@@ -15,7 +15,8 @@ import java.util.List;
  */
 public class BananaPageUtils implements Serializable {
 
-    //总记录数
+    private static final long serialVersionUID = -6226925329581070999L;
+	//总记录数
     private int totalCount;
     //每页记录数
     private int pageSize;

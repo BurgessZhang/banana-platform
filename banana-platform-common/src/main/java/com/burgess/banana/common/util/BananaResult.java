@@ -15,7 +15,9 @@ import java.util.Map;
  */
 public class BananaResult extends HashMap<String, Object> {
 
-    public BananaResult() {
+    private static final long serialVersionUID = 8853546605898274882L;
+
+	public BananaResult() {
         put("code", 0);
         put("msg", "success");
     }
