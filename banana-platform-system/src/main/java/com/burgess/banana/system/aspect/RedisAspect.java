@@ -1,6 +1,6 @@
 package com.burgess.banana.system.aspect;
 
-import com.burgess.banana.system.exception.RRException;
+import com.burgess.banana.common.exception.BananaResultException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -24,7 +24,7 @@ public class RedisAspect {
     @Value("${spring.redis.open: false}")
     private boolean open;
 
-    @Around("execution(* com.burgess.banana.system.util.BananaRedisUtils.*(..))")
+    @Around("execution(* com.burgess.banana.common.util.BananaRedisUtils.*(..))")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         Object result = null;
         if(open){
@@ -32,7 +32,7 @@ public class RedisAspect {
                 result = point.proceed();
             }catch (Exception e){
                 logger.error("redis error", e);
-                throw new RRException("Redis服务异常");
+                throw new BananaResultException("Redis服务异常");
             }
         }
         return result;
