@@ -1,7 +1,7 @@
 package com.burgess.banana.system.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.burgess.banana.system.dao.SysRoleMenuDao;
+import com.burgess.banana.system.mapper.SysRoleMenuDao;
 import com.burgess.banana.system.entity.SysRoleMenuEntity;
 import com.burgess.banana.system.service.SysRoleMenuService;
 import org.springframework.stereotype.Service;

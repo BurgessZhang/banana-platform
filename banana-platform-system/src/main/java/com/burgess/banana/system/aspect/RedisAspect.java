@@ -24,7 +24,7 @@ public class RedisAspect {
     @Value("${spring.redis.open: false}")
     private boolean open;
 
-    @Around("execution(* com.burgess.banana.system.util.RedisUtils.*(..))")
+    @Around("execution(* com.burgess.banana.system.util.BananaRedisUtils.*(..))")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         Object result = null;
         if(open){

@@ -3,15 +3,15 @@ package com.burgess.banana.system.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.burgess.banana.system.dao.SysUserDao;
+import com.burgess.banana.common.util.BananaConstant;
+import com.burgess.banana.common.util.BananaPageUtils;
+import com.burgess.banana.common.util.BananaQuery;
+import com.burgess.banana.system.mapper.SysUserDao;
 import com.burgess.banana.system.entity.SysUserEntity;
 import com.burgess.banana.system.exception.RRException;
 import com.burgess.banana.system.service.SysRoleService;
 import com.burgess.banana.system.service.SysUserRoleService;
 import com.burgess.banana.system.service.SysUserService;
-import com.burgess.banana.system.util.Constant;
-import com.burgess.banana.system.util.PageUtils;
-import com.burgess.banana.system.util.Query;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -38,18 +38,18 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 	private SysRoleService sysRoleService;
 
 	@Override
-	public PageUtils queryPage(Map<String, Object> params) {
+	public BananaPageUtils queryPage(Map<String, Object> params) {
 		String username = (String)params.get("username");
 		Long createUserId = (Long)params.get("createUserId");
 
 		Page<SysUserEntity> page = this.selectPage(
-			new Query<SysUserEntity>(params).getPage(),
+			new BananaQuery<SysUserEntity>(params).getPage(),
 			new EntityWrapper<SysUserEntity>()
 				.like(StringUtils.isNotBlank(username),"username", username)
 				.eq(createUserId != null,"create_user_id", createUserId)
 		);
 
-		return new PageUtils(page);
+		return new BananaPageUtils(page);
 	}
 
 	@Override
@@ -122,7 +122,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 			return;
 		}
 		//如果不是超级管理员，则需要判断用户的角色是否自己创建
-		if(user.getCreateUserId() == Constant.SUPER_ADMIN){
+		if(user.getCreateUserId() == BananaConstant.SUPER_ADMIN){
 			return ;
 		}
 		

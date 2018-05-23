@@ -1,13 +1,8 @@
 package com.burgess.banana.system.service.impl;
 
-import com.burgess.banana.system.dao.SysMenuDao;
-import com.burgess.banana.system.dao.SysUserDao;
-import com.burgess.banana.system.dao.SysUserTokenDao;
-import com.burgess.banana.system.entity.SysMenuEntity;
-import com.burgess.banana.system.entity.SysUserEntity;
-import com.burgess.banana.system.entity.SysUserTokenEntity;
+import com.burgess.banana.common.util.BananaConstant;
+import com.burgess.banana.system.mapper.BananaSystemMenuMapper;
 import com.burgess.banana.system.service.ShiroService;
-import com.burgess.banana.system.util.Constant;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +12,7 @@ import java.util.*;
 @Service
 public class ShiroServiceImpl implements ShiroService {
     @Autowired
-    private SysMenuDao sysMenuDao;
+    private BananaSystemMenuMapper sysMenuDao;
     @Autowired
     private SysUserDao sysUserDao;
     @Autowired
@@ -28,7 +23,7 @@ public class ShiroServiceImpl implements ShiroService {
         List<String> permsList;
 
         //系统管理员，拥有最高权限
-        if(userId == Constant.SUPER_ADMIN){
+        if(userId == BananaConstant.SUPER_ADMIN){
             List<SysMenuEntity> menuList = sysMenuDao.selectList(null);
             permsList = new ArrayList<>(menuList.size());
             for(SysMenuEntity menu : menuList){

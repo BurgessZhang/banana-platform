@@ -1,11 +1,11 @@
 package com.burgess.banana.system.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.burgess.banana.system.dao.SysUserTokenDao;
+import com.burgess.banana.common.util.BananaResult;
+import com.burgess.banana.system.mapper.SysUserTokenDao;
 import com.burgess.banana.system.entity.SysUserTokenEntity;
 import com.burgess.banana.system.oauth2.TokenGenerator;
 import com.burgess.banana.system.service.SysUserTokenService;
-import com.burgess.banana.system.util.R;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -18,7 +18,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
 
 
 	@Override
-	public R createToken(long userId) {
+	public BananaResult createToken(long userId) {
 		//生成一个token
 		String token = TokenGenerator.generateValue();
 
@@ -47,7 +47,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
 			this.updateById(tokenEntity);
 		}
 
-		R r = R.ok().put("token", token).put("expire", EXPIRE);
+		BananaResult r = BananaResult.ok().put("token", token).put("expire", EXPIRE);
 
 		return r;
 	}

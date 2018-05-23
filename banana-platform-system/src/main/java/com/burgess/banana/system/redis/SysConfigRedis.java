@@ -1,8 +1,8 @@
 package com.burgess.banana.system.redis;
 
-import com.burgess.banana.system.entity.SysConfigEntity;
-import com.burgess.banana.system.util.RedisKeys;
-import com.burgess.banana.system.util.RedisUtils;
+import com.burgess.banana.common.util.BananaRedisKeys;
+import com.burgess.banana.common.util.BananaRedisUtils;
+import com.burgess.banana.system.entity.BananaSystemConfigEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,23 +16,23 @@ import org.springframework.stereotype.Component;
 @Component
 public class SysConfigRedis {
     @Autowired
-    private RedisUtils redisUtils;
+    private BananaRedisUtils redisUtils;
 
-    public void saveOrUpdate(SysConfigEntity config) {
+    public void saveOrUpdate(BananaSystemConfigEntity config) {
         if(config == null){
             return ;
         }
-        String key = RedisKeys.getSysConfigKey(config.getKey());
+        String key = BananaRedisKeys.getSysConfigKey(config.getKey());
         redisUtils.set(key, config);
     }
 
     public void delete(String configKey) {
-        String key = RedisKeys.getSysConfigKey(configKey);
+        String key = BananaRedisKeys.getSysConfigKey(configKey);
         redisUtils.delete(key);
     }
 
-    public SysConfigEntity get(String configKey){
-        String key = RedisKeys.getSysConfigKey(configKey);
-        return redisUtils.get(key, SysConfigEntity.class);
+    public BananaSystemConfigEntity get(String configKey){
+        String key = BananaRedisKeys.getSysConfigKey(configKey);
+        return redisUtils.get(key, BananaSystemConfigEntity.class);
     }
 }

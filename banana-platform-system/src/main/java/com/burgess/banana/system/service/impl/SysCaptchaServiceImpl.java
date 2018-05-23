@@ -18,11 +18,11 @@ package com.burgess.banana.system.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.burgess.banana.system.dao.SysCaptchaDao;
+import com.burgess.banana.common.util.BananaDateUtils;
+import com.burgess.banana.system.mapper.SysCaptchaDao;
 import com.burgess.banana.system.entity.SysCaptchaEntity;
 import com.burgess.banana.system.exception.RRException;
 import com.burgess.banana.system.service.SysCaptchaService;
-import com.burgess.banana.system.util.DateUtils;
 import com.google.code.kaptcha.Producer;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +54,7 @@ public class SysCaptchaServiceImpl extends ServiceImpl<SysCaptchaDao, SysCaptcha
         captchaEntity.setUuid(uuid);
         captchaEntity.setCode(code);
         //5分钟后过期
-        captchaEntity.setExpireTime(DateUtils.addDateMinutes(new Date(), 5));
+        captchaEntity.setExpireTime(BananaDateUtils.addDateMinutes(new Date(), 5));
         this.insert(captchaEntity);
 
         return producer.createImage(code);

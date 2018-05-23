@@ -1,6 +1,6 @@
 package com.burgess.banana.system.exception;
 
-import com.burgess.banana.system.util.R;
+import com.burgess.banana.common.util.BananaResult;
 import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,8 +23,8 @@ public class RRExceptionHandler {
 	 * 处理自定义异常
 	 */
 	@ExceptionHandler(RRException.class)
-	public R handleRRException(RRException e){
-		R r = new R();
+	public BananaResult handleRRException(RRException e){
+		BananaResult r = new BananaResult();
 		r.put("code", e.getCode());
 		r.put("msg", e.getMessage());
 
@@ -32,20 +32,20 @@ public class RRExceptionHandler {
 	}
 
 	@ExceptionHandler(DuplicateKeyException.class)
-	public R handleDuplicateKeyException(DuplicateKeyException e){
+	public BananaResult handleDuplicateKeyException(DuplicateKeyException e){
 		logger.error(e.getMessage(), e);
-		return R.error("数据库中已存在该记录");
+		return BananaResult.error("数据库中已存在该记录");
 	}
 
 	@ExceptionHandler(AuthorizationException.class)
-	public R handleAuthorizationException(AuthorizationException e){
+	public BananaResult handleAuthorizationException(AuthorizationException e){
 		logger.error(e.getMessage(), e);
-		return R.error("没有权限，请联系管理员授权");
+		return BananaResult.error("没有权限，请联系管理员授权");
 	}
 
 	@ExceptionHandler(Exception.class)
-	public R handleException(Exception e){
+	public BananaResult handleException(Exception e){
 		logger.error(e.getMessage(), e);
-		return R.error();
+		return BananaResult.error();
 	}
 }

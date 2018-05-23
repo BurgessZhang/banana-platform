@@ -17,12 +17,12 @@
 package com.burgess.banana.system.controller;
 
 
-import com.burgess.banana.system.annotation.SysLog;
+import com.burgess.banana.common.util.BananaPageUtils;
+import com.burgess.banana.common.util.BananaResult;
+import com.burgess.banana.common.validator.BananaValidatorUtils;
+import com.burgess.banana.log.annotation.BananaSystemLog;
 import com.burgess.banana.system.entity.SysConfigEntity;
 import com.burgess.banana.system.service.SysConfigService;
-import com.burgess.banana.system.util.PageUtils;
-import com.burgess.banana.system.util.R;
-import com.burgess.banana.system.validator.ValidatorUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -47,10 +47,10 @@ public class SysConfigController extends AbstractController {
 	 */
 	@GetMapping("/list")
 	@RequiresPermissions("sys:config:list")
-	public R list(@RequestParam Map<String, Object> params){
-		PageUtils page = sysConfigService.queryPage(params);
+	public BananaResult list(@RequestParam Map<String, Object> params){
+		BananaPageUtils page = sysConfigService.queryPage(params);
 
-		return R.ok().put("page", page);
+		return BananaResult.ok().put("page", page);
 	}
 	
 	
@@ -59,50 +59,50 @@ public class SysConfigController extends AbstractController {
 	 */
 	@GetMapping("/info/{id}")
 	@RequiresPermissions("sys:config:info")
-	public R info(@PathVariable("id") Long id){
+	public BananaResult info(@PathVariable("id") Long id){
 		SysConfigEntity config = sysConfigService.selectById(id);
 		
-		return R.ok().put("config", config);
+		return BananaResult.ok().put("config", config);
 	}
 	
 	/**
 	 * 保存配置
 	 */
-	@SysLog("保存配置")
+	@BananaSystemLog("保存配置")
 	@PostMapping("/save")
 	@RequiresPermissions("sys:config:save")
-	public R save(@RequestBody SysConfigEntity config){
-		ValidatorUtils.validateEntity(config);
+	public BananaResult save(@RequestBody SysConfigEntity config){
+		BananaValidatorUtils.validateEntity(config);
 
 		sysConfigService.save(config);
 		
-		return R.ok();
+		return BananaResult.ok();
 	}
 	
 	/**
 	 * 修改配置
 	 */
-	@SysLog("修改配置")
+	@BananaSystemLog("修改配置")
 	@PostMapping("/update")
 	@RequiresPermissions("sys:config:update")
-	public R update(@RequestBody SysConfigEntity config){
-		ValidatorUtils.validateEntity(config);
+	public BananaResult update(@RequestBody SysConfigEntity config){
+		BananaValidatorUtils.validateEntity(config);
 		
 		sysConfigService.update(config);
 		
-		return R.ok();
+		return BananaResult.ok();
 	}
 	
 	/**
 	 * 删除配置
 	 */
-	@SysLog("删除配置")
+	@BananaSystemLog("删除配置")
 	@PostMapping("/delete")
 	@RequiresPermissions("sys:config:delete")
-	public R delete(@RequestBody Long[] ids){
+	public BananaResult delete(@RequestBody Long[] ids){
 		sysConfigService.deleteBatch(ids);
 		
-		return R.ok();
+		return BananaResult.ok();
 	}
 
 }

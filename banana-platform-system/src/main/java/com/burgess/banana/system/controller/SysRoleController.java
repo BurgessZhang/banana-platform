@@ -1,13 +1,13 @@
 package com.burgess.banana.system.controller;
 
-import com.burgess.banana.system.annotation.SysLog;
+import com.burgess.banana.common.util.BananaConstant;
+import com.burgess.banana.common.util.BananaPageUtils;
+import com.burgess.banana.common.util.BananaResult;
+import com.burgess.banana.common.validator.BananaValidatorUtils;
+import com.burgess.banana.log.annotation.BananaSystemLog;
 import com.burgess.banana.system.entity.SysRoleEntity;
 import com.burgess.banana.system.service.SysRoleMenuService;
 import com.burgess.banana.system.service.SysRoleService;
-import com.burgess.banana.system.util.Constant;
-import com.burgess.banana.system.util.PageUtils;
-import com.burgess.banana.system.util.R;
-import com.burgess.banana.system.validator.ValidatorUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,15 +36,15 @@ public class SysRoleController extends AbstractController {
 	 */
 	@GetMapping("/list")
 	@RequiresPermissions("sys:role:list")
-	public R list(@RequestParam Map<String, Object> params){
+	public BananaResult list(@RequestParam Map<String, Object> params){
 		//如果不是超级管理员，则只查询自己创建的角色列表
-		if(getUserId() != Constant.SUPER_ADMIN){
+		if(getUserId() != BananaConstant.SUPER_ADMIN){
 			params.put("createUserId", getUserId());
 		}
 
-		PageUtils page = sysRoleService.queryPage(params);
+		BananaPageUtils page = sysRoleService.queryPage(params);
 
-		return R.ok().put("page", page);
+		return BananaResult.ok().put("page", page);
 	}
 	
 	/**
@@ -52,16 +52,16 @@ public class SysRoleController extends AbstractController {
 	 */
 	@GetMapping("/select")
 	@RequiresPermissions("sys:role:select")
-	public R select(){
+	public BananaResult select(){
 		Map<String, Object> map = new HashMap<>();
 		
 		//如果不是超级管理员，则只查询自己所拥有的角色列表
-		if(getUserId() != Constant.SUPER_ADMIN){
+		if(getUserId() != BananaConstant.SUPER_ADMIN){
 			map.put("createUserId", getUserId());
 		}
 		List<SysRoleEntity> list = sysRoleService.selectByMap(map);
 		
-		return R.ok().put("list", list);
+		return BananaResult.ok().put("list", list);
 	}
 	
 	/**
@@ -69,55 +69,55 @@ public class SysRoleController extends AbstractController {
 	 */
 	@GetMapping("/info/{roleId}")
 	@RequiresPermissions("sys:role:info")
-	public R info(@PathVariable("roleId") Long roleId){
+	public BananaResult info(@PathVariable("roleId") Long roleId){
 		SysRoleEntity role = sysRoleService.selectById(roleId);
 		
 		//查询角色对应的菜单
 		List<Long> menuIdList = sysRoleMenuService.queryMenuIdList(roleId);
 		role.setMenuIdList(menuIdList);
 		
-		return R.ok().put("role", role);
+		return BananaResult.ok().put("role", role);
 	}
 	
 	/**
 	 * 保存角色
 	 */
-	@SysLog("保存角色")
+	@BananaSystemLog("保存角色")
 	@PostMapping("/save")
 	@RequiresPermissions("sys:role:save")
-	public R save(@RequestBody SysRoleEntity role){
-		ValidatorUtils.validateEntity(role);
+	public BananaResult save(@RequestBody SysRoleEntity role){
+		BananaValidatorUtils.validateEntity(role);
 		
 		role.setCreateUserId(getUserId());
 		sysRoleService.save(role);
 		
-		return R.ok();
+		return BananaResult.ok();
 	}
 	
 	/**
 	 * 修改角色
 	 */
-	@SysLog("修改角色")
+	@BananaSystemLog("修改角色")
 	@PostMapping("/update")
 	@RequiresPermissions("sys:role:update")
-	public R update(@RequestBody SysRoleEntity role){
-		ValidatorUtils.validateEntity(role);
+	public BananaResult update(@RequestBody SysRoleEntity role){
+		BananaValidatorUtils.validateEntity(role);
 		
 		role.setCreateUserId(getUserId());
 		sysRoleService.update(role);
 		
-		return R.ok();
+		return BananaResult.ok();
 	}
 	
 	/**
 	 * 删除角色
 	 */
-	@SysLog("删除角色")
+	@BananaSystemLog("删除角色")
 	@PostMapping("/delete")
 	@RequiresPermissions("sys:role:delete")
-	public R delete(@RequestBody Long[] roleIds){
+	public BananaResult delete(@RequestBody Long[] roleIds){
 		sysRoleService.deleteBatch(roleIds);
 		
-		return R.ok();
+		return BananaResult.ok();
 	}
 }

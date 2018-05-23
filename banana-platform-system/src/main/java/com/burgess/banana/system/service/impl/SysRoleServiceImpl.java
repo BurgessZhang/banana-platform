@@ -3,16 +3,16 @@ package com.burgess.banana.system.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.burgess.banana.system.dao.SysRoleDao;
+import com.burgess.banana.common.util.BananaConstant;
+import com.burgess.banana.common.util.BananaPageUtils;
+import com.burgess.banana.common.util.BananaQuery;
+import com.burgess.banana.system.mapper.SysRoleDao;
 import com.burgess.banana.system.entity.SysRoleEntity;
 import com.burgess.banana.system.exception.RRException;
 import com.burgess.banana.system.service.SysRoleMenuService;
 import com.burgess.banana.system.service.SysRoleService;
 import com.burgess.banana.system.service.SysUserRoleService;
 import com.burgess.banana.system.service.SysUserService;
-import com.burgess.banana.system.util.Constant;
-import com.burgess.banana.system.util.PageUtils;
-import com.burgess.banana.system.util.Query;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,18 +40,18 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
     private SysUserRoleService sysUserRoleService;
 
 	@Override
-	public PageUtils queryPage(Map<String, Object> params) {
+	public BananaPageUtils queryPage(Map<String, Object> params) {
 		String roleName = (String)params.get("roleName");
 		Long createUserId = (Long)params.get("createUserId");
 
 		Page<SysRoleEntity> page = this.selectPage(
-			new Query<SysRoleEntity>(params).getPage(),
+			new BananaQuery<SysRoleEntity>(params).getPage(),
 			new EntityWrapper<SysRoleEntity>()
 				.like(StringUtils.isNotBlank(roleName),"role_name", roleName)
 				.eq(createUserId != null,"create_user_id", createUserId)
 		);
 
-		return new PageUtils(page);
+		return new BananaPageUtils(page);
 	}
 
     @Override
@@ -103,7 +103,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
 	 */
 	private void checkPrems(SysRoleEntity role){
 		//如果不是超级管理员，则需要判断角色的权限是否超过自己的权限
-		if(role.getCreateUserId() == Constant.SUPER_ADMIN){
+		if(role.getCreateUserId() == BananaConstant.SUPER_ADMIN){
 			return ;
 		}
 		

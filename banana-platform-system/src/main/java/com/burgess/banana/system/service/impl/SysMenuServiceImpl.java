@@ -18,13 +18,13 @@ package com.burgess.banana.system.service.impl;
 
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.burgess.banana.system.dao.SysMenuDao;
+import com.burgess.banana.common.util.BananaConstant;
+import com.burgess.banana.common.util.BananaMapUtils;
+import com.burgess.banana.system.mapper.SysMenuDao;
 import com.burgess.banana.system.entity.SysMenuEntity;
 import com.burgess.banana.system.service.SysMenuService;
 import com.burgess.banana.system.service.SysRoleMenuService;
 import com.burgess.banana.system.service.SysUserService;
-import com.burgess.banana.system.util.Constant;
-import com.burgess.banana.system.util.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,7 +68,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
 	@Override
 	public List<SysMenuEntity> getUserMenuList(Long userId) {
 		//系统管理员，拥有最高权限
-		if(userId == Constant.SUPER_ADMIN){
+		if(userId == BananaConstant.SUPER_ADMIN){
 			return getAllMenuList(null);
 		}
 		
@@ -82,7 +82,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
 		//删除菜单
 		this.deleteById(menuId);
 		//删除菜单与角色关联
-		sysRoleMenuService.deleteByMap(new MapUtils().put("menu_id", menuId));
+		sysRoleMenuService.deleteByMap(new BananaMapUtils().put("menu_id", menuId));
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
 		
 		for(SysMenuEntity entity : menuList){
 			//目录
-			if(entity.getType() == Constant.MenuType.CATALOG.getValue()){
+			if(entity.getType() == BananaConstant.MenuType.CATALOG.getValue()){
 				entity.setList(getMenuTreeList(queryListParentId(entity.getMenuId(), menuIdList), menuIdList));
 			}
 			subMenuList.add(entity);

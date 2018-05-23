@@ -1,8 +1,8 @@
 package com.burgess.banana.system.service;
 
 import com.baomidou.mybatisplus.service.IService;
+import com.burgess.banana.common.util.BananaPageUtils;
 import com.burgess.banana.system.entity.SysRoleEntity;
-import com.burgess.banana.system.util.PageUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public interface SysRoleService extends IService<SysRoleEntity> {
 
-	PageUtils queryPage(Map<String, Object> params);
+	BananaPageUtils queryPage(Map<String, Object> params);
 
 	void save(SysRoleEntity role);
 

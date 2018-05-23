@@ -19,13 +19,13 @@ package com.burgess.banana.system.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.burgess.banana.system.dao.SysConfigDao;
+import com.burgess.banana.common.util.BananaPageUtils;
+import com.burgess.banana.common.util.BananaQuery;
+import com.burgess.banana.system.mapper.SysConfigDao;
 import com.burgess.banana.system.entity.SysConfigEntity;
 import com.burgess.banana.system.exception.RRException;
 import com.burgess.banana.system.redis.SysConfigRedis;
 import com.burgess.banana.system.service.SysConfigService;
-import com.burgess.banana.system.util.PageUtils;
-import com.burgess.banana.system.util.Query;
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,17 +41,17 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigDao, SysConfigEnt
 	private SysConfigRedis sysConfigRedis;
 
 	@Override
-	public PageUtils queryPage(Map<String, Object> params) {
+	public BananaPageUtils queryPage(Map<String, Object> params) {
 		String key = (String)params.get("key");
 
 		Page<SysConfigEntity> page = this.selectPage(
-				new Query<SysConfigEntity>(params).getPage(),
+				new BananaQuery<SysConfigEntity>(params).getPage(),
 				new EntityWrapper<SysConfigEntity>()
 					.like(StringUtils.isNotBlank(key),"key", key)
 					.eq("status", 1)
 		);
 
-		return new PageUtils(page);
+		return new BananaPageUtils(page);
 	}
 	
 	@Override

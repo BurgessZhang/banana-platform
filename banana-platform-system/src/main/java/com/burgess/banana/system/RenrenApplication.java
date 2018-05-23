@@ -1,6 +1,6 @@
 package com.burgess.banana.system;
 
-import com.burgess.banana.system.datasources.DynamicDataSourceConfig;
+import com.burgess.banana.datasources.BananaDynamicDataSourceConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Import;
 
 
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
-@Import({DynamicDataSourceConfig.class})
+@Import({BananaDynamicDataSourceConfig.class})
 public class RenrenApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
