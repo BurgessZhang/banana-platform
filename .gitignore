@@ -21,3 +21,5 @@
 /banana-platform-common/target
 /banana-platform-log/target
 /banana-platform-log/*.iml
+/banana-platform-api/*.iml
+/banana-platform-mongo/*.iml
