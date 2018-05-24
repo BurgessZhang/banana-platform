@@ -15,3 +15,9 @@
 .factorypath
 
 /banana-platform-system/target
+/banana-platform-redis/target
+/banana-platform-redis/*.iml
+/banana-platform-datasources/target
+/banana-platform-common/target
+/banana-platform-log/target
+/banana-platform-log/*.iml
