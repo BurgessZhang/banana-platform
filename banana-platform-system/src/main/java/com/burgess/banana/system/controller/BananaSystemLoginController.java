@@ -1,7 +1,7 @@
 package com.burgess.banana.system.controller;
 
 import com.burgess.banana.common.util.BananaResult;
-import com.burgess.banana.system.entity.BananaSystemUserEntity;
+import com.burgess.banana.log.entity.BananaSystemUserEntity;
 import com.burgess.banana.system.form.BananaSystemLoginForm;
 import com.burgess.banana.system.service.BananaSystemCaptchaService;
 import com.burgess.banana.system.service.BananaSystemUserService;

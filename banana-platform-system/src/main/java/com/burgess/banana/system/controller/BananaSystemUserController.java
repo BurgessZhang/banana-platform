@@ -8,7 +8,7 @@ import com.burgess.banana.common.validator.BananaValidatorUtils;
 import com.burgess.banana.common.validator.group.BananaAddGroup;
 import com.burgess.banana.common.validator.group.BananaUpdateGroup;
 import com.burgess.banana.log.annotation.BananaSystemLog;
-import com.burgess.banana.system.entity.BananaSystemUserEntity;
+import com.burgess.banana.log.entity.BananaSystemUserEntity;
 import com.burgess.banana.system.form.BananaPasswordForm;
 import com.burgess.banana.system.service.BananaSystemUserRoleService;
 import com.burgess.banana.system.service.BananaSystemUserService;

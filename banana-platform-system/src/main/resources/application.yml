@@ -4,9 +4,9 @@ server:
         uri-encoding: UTF-8
         max-threads: 1000
         min-spare-threads: 30
-    port: 8080
+    port: 1111
     connection-timeout: 5000
-    context-path: /renren-fast
+    context-path: /banana
 
 spring:
     # 环境 dev|test|prod
@@ -39,7 +39,7 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.burgess.banana.system.entity
+  typeAliasesPackage: com.burgess.banana.*.entity
   global-config:
     #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
     id-type: 0
@@ -69,7 +69,7 @@ renren:
     # APP模块，是通过jwt认证的，如果要使用APP模块，则需要修改【加密秘钥】
     jwt:
         # 加密秘钥
-        secret: f4e2e52034348f86b67cde581c0f9eb5[www.renren.io]
+        secret: f4e2e52034348f86b67cde581c0f9eb5[www.banana.io]
         # token有效时长，7天，单位秒
         expire: 604800
         header: token

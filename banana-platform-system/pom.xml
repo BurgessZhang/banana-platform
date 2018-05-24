@@ -33,6 +33,11 @@
             <artifactId>banana-platform-datasources</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.burgess.banana</groupId>
+            <artifactId>banana-platform-redis</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 

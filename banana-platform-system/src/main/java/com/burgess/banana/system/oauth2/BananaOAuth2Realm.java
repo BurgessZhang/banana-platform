@@ -1,6 +1,6 @@
 package com.burgess.banana.system.oauth2;
 
-import com.burgess.banana.system.entity.BananaSystemUserEntity;
+import com.burgess.banana.log.entity.BananaSystemUserEntity;
 import com.burgess.banana.system.entity.BananaSystemUserTokenEntity;
 import com.burgess.banana.system.service.BananaShiroService;
 import org.apache.shiro.authc.*;
@@ -8,6 +8,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Set;
@@ -20,6 +21,7 @@ import java.util.Set;
  * @time 2018-05-23 22:12
  * @desc 认证
  */
+@Component("oauth2Realm")
 public class BananaOAuth2Realm extends AuthorizingRealm {
 
 
@@ -28,7 +30,7 @@ public class BananaOAuth2Realm extends AuthorizingRealm {
 
     @Override
     public boolean supports(AuthenticationToken token) {
-        return token instanceof OAuth2Token;
+        return token instanceof BananaOAuth2Token;
     }
 
     /**

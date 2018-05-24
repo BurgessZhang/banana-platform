@@ -35,7 +35,7 @@ public class BananaOAuth2Filter extends AuthenticatingFilter {
             return null;
         }
 
-        return new OAuth2Token(token);
+        return new BananaOAuth2Token(token);
     }
 
     @Override

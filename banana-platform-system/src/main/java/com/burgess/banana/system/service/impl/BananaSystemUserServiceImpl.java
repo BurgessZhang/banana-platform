@@ -7,7 +7,7 @@ import com.burgess.banana.common.exception.BananaResultException;
 import com.burgess.banana.common.util.BananaConstant;
 import com.burgess.banana.common.util.BananaPageUtils;
 import com.burgess.banana.common.util.BananaQuery;
-import com.burgess.banana.system.entity.BananaSystemUserEntity;
+import com.burgess.banana.log.entity.BananaSystemUserEntity;
 import com.burgess.banana.system.mapper.BananaSystemUserMapper;
 import com.burgess.banana.system.service.BananaSystemRoleService;
 import com.burgess.banana.system.service.BananaSystemUserRoleService;

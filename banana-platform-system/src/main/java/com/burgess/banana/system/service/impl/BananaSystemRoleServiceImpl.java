@@ -11,6 +11,7 @@ import com.burgess.banana.system.entity.BananaSystemRoleEntity;
 import com.burgess.banana.system.mapper.BananaSystemRoleMapper;
 import com.burgess.banana.system.service.BananaSystemRoleMenuService;
 import com.burgess.banana.system.service.BananaSystemRoleService;
+import com.burgess.banana.system.service.BananaSystemUserRoleService;
 import com.burgess.banana.system.service.BananaSystemUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class BananaSystemRoleServiceImpl extends ServiceImpl<BananaSystemRoleMap
     private BananaSystemUserService sysUserService;
 
     @Resource(name = "sysUserRoleService")
-    private BananaSystemRoleService sysUserRoleService;
+    private BananaSystemUserRoleService sysUserRoleService;
 
 
     @Override

@@ -1,8 +1,8 @@
 package com.burgess.banana.system.service.impl;
 
 import com.burgess.banana.common.util.BananaConstant;
+import com.burgess.banana.log.entity.BananaSystemUserEntity;
 import com.burgess.banana.system.entity.BananaSystemMenuEntity;
-import com.burgess.banana.system.entity.BananaSystemUserEntity;
 import com.burgess.banana.system.entity.BananaSystemUserTokenEntity;
 import com.burgess.banana.system.mapper.BananaSystemMenuMapper;
 import com.burgess.banana.system.mapper.BananaSystemUserMapper;

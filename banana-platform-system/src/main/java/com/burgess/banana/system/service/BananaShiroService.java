@@ -1,6 +1,6 @@
 package com.burgess.banana.system.service;
 
-import com.burgess.banana.system.entity.BananaSystemUserEntity;
+import com.burgess.banana.log.entity.BananaSystemUserEntity;
 import com.burgess.banana.system.entity.BananaSystemUserTokenEntity;
 
 import java.util.Set;

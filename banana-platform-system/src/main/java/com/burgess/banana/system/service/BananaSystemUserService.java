@@ -2,7 +2,7 @@ package com.burgess.banana.system.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.burgess.banana.common.util.BananaPageUtils;
-import com.burgess.banana.system.entity.BananaSystemUserEntity;
+import com.burgess.banana.log.entity.BananaSystemUserEntity;
 
 import java.util.List;
 import java.util.Map;

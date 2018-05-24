@@ -1,7 +1,7 @@
 package com.burgess.banana.system.util;
 
-import com.burgess.banana.system.entity.SysUserEntity;
-import com.burgess.banana.system.exception.RRException;
+import com.burgess.banana.common.exception.BananaResultException;
+import com.burgess.banana.log.entity.BananaSystemUserEntity;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -23,8 +23,8 @@ public class BananaShiroUtils {
 		return SecurityUtils.getSubject();
 	}
 
-	public static SysUserEntity getUserEntity() {
-		return (SysUserEntity)SecurityUtils.getSubject().getPrincipal();
+	public static BananaSystemUserEntity getUserEntity() {
+		return (BananaSystemUserEntity)SecurityUtils.getSubject().getPrincipal();
 	}
 
 	public static Long getUserId() {
@@ -46,7 +46,7 @@ public class BananaShiroUtils {
 	public static String getKaptcha(String key) {
 		Object kaptcha = getSessionAttribute(key);
 		if(kaptcha == null){
-			throw new RRException("验证码已失效");
+			throw new BananaResultException("验证码已失效");
 		}
 		getSession().removeAttribute(key);
 		return kaptcha.toString();

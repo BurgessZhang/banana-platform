@@ -1,10 +1,10 @@
 package com.burgess.banana.log.aspect;
 
-import com.burgess.banana.common.entity.BananaSystemUserEntity;
 import com.burgess.banana.common.util.BananaHttpContextUtils;
 import com.burgess.banana.common.util.BananaIPUtils;
 import com.burgess.banana.log.annotation.BananaSystemLog;
 import com.burgess.banana.log.entity.BananaSystemLogEntity;
+import com.burgess.banana.log.entity.BananaSystemUserEntity;
 import com.burgess.banana.log.service.BananaSystemLogService;
 import com.google.gson.Gson;
 import org.apache.shiro.SecurityUtils;

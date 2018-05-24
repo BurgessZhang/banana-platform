@@ -17,7 +17,7 @@
 		where ur.user_id = #{userId}
 	</select>
 	
-	<select id="queryByUserName" resultType="com.burgess.banana.system.entity.BananaSystemUserEntity">
+	<select id="queryByUserName" resultType="com.burgess.banana.log.entity.BananaSystemUserEntity">
 		select * from sys_user where username = #{username}
 	</select>
 

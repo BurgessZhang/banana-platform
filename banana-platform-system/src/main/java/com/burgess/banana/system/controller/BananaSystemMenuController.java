@@ -1,10 +1,10 @@
 package com.burgess.banana.system.controller;
 
+import com.burgess.banana.common.exception.BananaResultException;
 import com.burgess.banana.common.util.BananaConstant;
 import com.burgess.banana.common.util.BananaResult;
 import com.burgess.banana.log.annotation.BananaSystemLog;
 import com.burgess.banana.system.entity.BananaSystemMenuEntity;
-import com.burgess.banana.system.exception.RRException;
 import com.burgess.banana.system.service.BananaShiroService;
 import com.burgess.banana.system.service.BananaSystemMenuService;
 import org.apache.commons.lang.StringUtils;
@@ -147,17 +147,17 @@ public class BananaSystemMenuController extends BananaAbstractController {
      */
     private void verifyForm(BananaSystemMenuEntity menu) {
         if (StringUtils.isBlank(menu.getName())) {
-            throw new RRException("菜单名称不能为空");
+            throw new BananaResultException("菜单名称不能为空");
         }
 
         if (menu.getParentId() == null) {
-            throw new RRException("上级菜单不能为空");
+            throw new BananaResultException("上级菜单不能为空");
         }
 
         //菜单
         if (menu.getType() == BananaConstant.MenuType.MENU.getValue()) {
             if (StringUtils.isBlank(menu.getUrl())) {
-                throw new RRException("菜单URL不能为空");
+                throw new BananaResultException("菜单URL不能为空");
             }
         }
 
@@ -172,7 +172,7 @@ public class BananaSystemMenuController extends BananaAbstractController {
         if (menu.getType() == BananaConstant.MenuType.CATALOG.getValue() ||
                 menu.getType() == BananaConstant.MenuType.MENU.getValue()) {
             if (parentType != BananaConstant.MenuType.CATALOG.getValue()) {
-                throw new RRException("上级菜单只能为目录类型");
+                throw new BananaResultException("上级菜单只能为目录类型");
             }
             return;
         }
@@ -180,7 +180,7 @@ public class BananaSystemMenuController extends BananaAbstractController {
         //按钮
         if (menu.getType() == BananaConstant.MenuType.BUTTON.getValue()) {
             if (parentType != BananaConstant.MenuType.MENU.getValue()) {
-                throw new RRException("上级菜单只能为菜单类型");
+                throw new BananaResultException("上级菜单只能为菜单类型");
             }
             return;
         }

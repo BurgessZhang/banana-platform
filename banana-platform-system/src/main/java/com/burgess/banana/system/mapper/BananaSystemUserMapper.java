@@ -1,7 +1,7 @@
 package com.burgess.banana.system.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.burgess.banana.system.entity.BananaSystemUserEntity;
+import com.burgess.banana.log.entity.BananaSystemUserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
