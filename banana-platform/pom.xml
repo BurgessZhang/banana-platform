@@ -14,6 +14,8 @@
       <module>../banana-platform-datasources</module>
       <module>../banana-platform-log</module>
       <module>../banana-platform-redis</module>
+      <module>../banana-platform-mongo</module>
+    <module>../banana-platform-api</module>
   </modules>
   <packaging>pom</packaging>
 
