@@ -16,6 +16,7 @@
       <module>../banana-platform-redis</module>
       <module>../banana-platform-mongo</module>
     <module>../banana-platform-api</module>
+    <module>../banana-platform-schedule</module>
   </modules>
   <packaging>pom</packaging>
 
