@@ -25,8 +25,18 @@ import java.util.Map;
 public class BananaScheduleJobLogServiceImpl extends ServiceImpl<BananaScheduleJobLogMapper,BananaScheduleJobLogEntity> implements BananaScheduleJobLogService {
 
 
+    /**
+     * @file BananaScheduleJobLogServiceImpl.java
+     * @method queryPage
+     * @desc 获取定时任务日志列表
+     * @author free.zhang
+     * @date 2018/5/28 11:10
+     * @param '[params]
+     * @return com.burgess.banana.common.util.BananaPageUtils
+     */
     @Override
     public BananaPageUtils queryPage(Map<String, Object> params) {
+
         String jobId = (String)params.get("jobId");
 
         Page<BananaScheduleJobLogEntity> page = this.selectPage(

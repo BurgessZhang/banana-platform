@@ -26,17 +26,17 @@ public class BananaScheduleJobLogController {
     private BananaScheduleJobLogService scheduleJobLogService;
 
     /**
+     * @param '[params]
+     * @return com.burgess.banana.common.util.BananaResult
      * @class_name BananaScheduleJobLogController
      * @method list
      * @desc 定时任务日志列表
      * @author free.zhang
      * @date 2018/5/25 15:38
-     * @param '[params]
-     * @return com.burgess.banana.common.util.BananaResult
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:schedule:log")
-    public BananaResult list(@RequestParam Map<String, Object> params){
+    public BananaResult list(@RequestParam Map<String, Object> params) {
 
         BananaPageUtils page = scheduleJobLogService.queryPage(params);
 
@@ -44,16 +44,16 @@ public class BananaScheduleJobLogController {
     }
 
     /**
+     * @param '[logId]
+     * @return com.burgess.banana.common.util.BananaResult
      * @class_name BananaScheduleJobLogController
      * @method info
      * @desc 定时任务日志信息
      * @author free.zhang
      * @date 2018/5/25 15:37
-     * @param '[logId]
-     * @return com.burgess.banana.common.util.BananaResult
      */
     @GetMapping("/info/{logId}")
-    public BananaResult info(@PathVariable("logId") Long logId){
+    public BananaResult info(@PathVariable("logId") Long logId) {
 
         BananaScheduleJobLogEntity log = scheduleJobLogService.selectById(logId);
 

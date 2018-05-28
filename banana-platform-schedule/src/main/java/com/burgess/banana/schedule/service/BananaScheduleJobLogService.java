@@ -16,5 +16,7 @@ import java.util.Map;
  */
 public interface BananaScheduleJobLogService extends IService<BananaScheduleJobLogEntity> {
 
+
+    /**获取定时任务日志列表*/
     BananaPageUtils queryPage(Map<String, Object> params);
 }

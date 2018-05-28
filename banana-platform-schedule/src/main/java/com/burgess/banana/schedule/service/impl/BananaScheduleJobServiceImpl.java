@@ -35,17 +35,16 @@ public class BananaScheduleJobServiceImpl extends ServiceImpl<BananaScheduleJobM
     private Scheduler scheduler;
 
     /**
-     * @class_name BananaScheduleJobServiceImpl
+     * @file BananaScheduleJobServiceImpl.java
      * @method init
      * @desc 项目启动时，初始化定时器
      * @author free.zhang
-     * @date 2018/5/25 15:35
+     * @date 2018/5/28 11:15
      * @param '[]
      * @return void
      */
     @PostConstruct
     public void init(){
-
         List<BananaScheduleJobEntity> scheduleJobList = this.selectList(null);
         for(BananaScheduleJobEntity scheduleJob : scheduleJobList){
             CronTrigger cronTrigger = BananaScheduleUtils.getCronTrigger(scheduler, scheduleJob.getJobId());
@@ -58,10 +57,18 @@ public class BananaScheduleJobServiceImpl extends ServiceImpl<BananaScheduleJobM
         }
     }
 
+    /**
+     * @file BananaScheduleJobServiceImpl.java
+     * @method queryPage
+     * @desc 定时任务列表
+     * @author free.zhang
+     * @date 2018/5/28 11:16
+     * @param '[params]
+     * @return com.burgess.banana.common.util.BananaPageUtils
+     */
     @Override
     public BananaPageUtils queryPage(Map<String, Object> params) {
         String beanName = (String)params.get("beanName");
-
         Page<BananaScheduleJobEntity> page = this.selectPage(
                 new BananaQuery<BananaScheduleJobEntity>(params).getPage(),
                 new EntityWrapper<BananaScheduleJobEntity>().like(StringUtils.isNotBlank(beanName),"bean_name", beanName)
@@ -71,6 +78,15 @@ public class BananaScheduleJobServiceImpl extends ServiceImpl<BananaScheduleJobM
     }
 
 
+    /**
+     * @file BananaScheduleJobServiceImpl.java
+     * @method save
+     * @desc 添加定时任务
+     * @author free.zhang
+     * @date 2018/5/28 11:16
+     * @param '[scheduleJob]
+     * @return void
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(BananaScheduleJobEntity scheduleJob) {
@@ -81,25 +97,53 @@ public class BananaScheduleJobServiceImpl extends ServiceImpl<BananaScheduleJobM
         BananaScheduleUtils.createScheduleJob(scheduler, scheduleJob);
     }
 
+    /**
+     * @file BananaScheduleJobServiceImpl.java
+     * @method update
+     * @desc 更新定时任务
+     * @author free.zhang
+     * @date 2018/5/28 11:19
+     * @param '[scheduleJob]
+     * @return void
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void update(BananaScheduleJobEntity scheduleJob) {
+
         BananaScheduleUtils.updateScheduleJob(scheduler, scheduleJob);
 
         this.updateById(scheduleJob);
     }
 
+    /**
+     * @file BananaScheduleJobServiceImpl.java
+     * @method deleteBatch
+     * @desc 批量删除定时任务
+     * @author free.zhang
+     * @date 2018/5/28 11:19
+     * @param '[jobIds]
+     * @return void
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteBatch(Long[] jobIds) {
+
         for(Long jobId : jobIds){
             BananaScheduleUtils.deleteScheduleJob(scheduler, jobId);
         }
-
         //删除数据
         this.deleteBatchIds(Arrays.asList(jobIds));
     }
 
+    /**
+     * @file BananaScheduleJobServiceImpl.java
+     * @method updateBatch
+     * @desc 批量更新定时任务
+     * @author free.zhang
+     * @date 2018/5/28 11:19
+     * @param '[jobIds, status]
+     * @return int
+     */
     @Override
     public int updateBatch(Long[] jobIds, int status){
         Map<String, Object> map = new HashMap<>();
@@ -108,6 +152,15 @@ public class BananaScheduleJobServiceImpl extends ServiceImpl<BananaScheduleJobM
         return baseMapper.updateBatch(map);
     }
 
+    /**
+     * @file BananaScheduleJobServiceImpl.java
+     * @method run
+     * @desc 立即执行定时任务
+     * @author free.zhang
+     * @date 2018/5/28 11:20
+     * @param '[jobIds]
+     * @return void
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void run(Long[] jobIds) {
@@ -116,6 +169,15 @@ public class BananaScheduleJobServiceImpl extends ServiceImpl<BananaScheduleJobM
         }
     }
 
+    /**
+     * @file BananaScheduleJobServiceImpl.java
+     * @method pause
+     * @desc 暂停运行
+     * @author free.zhang
+     * @date 2018/5/28 11:20
+     * @param '[jobIds]
+     * @return void
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void pause(Long[] jobIds) {
@@ -126,6 +188,15 @@ public class BananaScheduleJobServiceImpl extends ServiceImpl<BananaScheduleJobM
         updateBatch(jobIds, BananaConstant.ScheduleStatus.PAUSE.getValue());
     }
 
+    /**
+     * @file BananaScheduleJobServiceImpl.java
+     * @method resume
+     * @desc 恢复运行
+     * @author free.zhang
+     * @date 2018/5/28 11:21
+     * @param '[jobIds]
+     * @return void
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void resume(Long[] jobIds) {
