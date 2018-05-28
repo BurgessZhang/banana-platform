@@ -26,6 +26,15 @@ public class BananaRedisAspect {
     @Value("${spring.redis.open: false}")
     private boolean open;
 
+    /**
+     * @file BananaRedisAspect.java
+     * @method around
+     * @desc reids环绕通知
+     * @author free.zhang
+     * @date 2018/5/28 15:47
+     * @param '[point]
+     * @return java.lang.Object
+     */
     @Around("execution(* com.burgess.banana.redis.util.BananaRedisUtils.*(..))")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         Object result = null;

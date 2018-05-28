@@ -40,6 +40,15 @@ public class BananaSystemLogAspect {
 
     }
 
+    /**
+     * @file BananaSystemLogAspect.java
+     * @method around
+     * @desc 系统日志环绕通知
+     * @author free.zhang
+     * @date 2018/5/28 15:49
+     * @param '[point]
+     * @return java.lang.Object
+     */
     @Around("logPointCut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         long beginTime = System.currentTimeMillis();
